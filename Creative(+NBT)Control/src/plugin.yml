@@ -19,3 +19,9 @@ permissions:
     CNC.bypass.enchants:
         description: Unlock access to copy enchants.
         default: op
+    CNC.bypass.itemframes:
+        description: Unlock access to interact with itemframe in Creative Mode.
+        default: op
+    CNC.bypass.armorstands:
+        description: Unlock access to interact with armorstand in Creative Mode.
+        default: op

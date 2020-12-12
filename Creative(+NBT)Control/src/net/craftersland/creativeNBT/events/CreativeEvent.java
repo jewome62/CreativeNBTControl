@@ -46,7 +46,6 @@ public class CreativeEvent implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public void inventoryClickEvent(final InventoryClickEvent event) {
 		//Triggers on other inventory click
-		//CC.log.warning("Debug 1 - " + event.getClick().isCreativeAction() + " - " + event.getClick().isRightClick() + " - " + event.getClick().isLeftClick() + " - " + event.getClick() +  " - " + event.getClick().isKeyboardClick());
 		if ((event.getClick() == ClickType.MIDDLE && event.getClick().isCreativeAction() == true) || event.getClick() == ClickType.UNKNOWN) {
 			if (event.getInventory().getType() != InventoryType.PLAYER) {
 				Player p = (Player) event.getWhoClicked();
@@ -87,7 +86,6 @@ public class CreativeEvent implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public void inventoryCreativeEvent(final InventoryCreativeEvent event) {
 		//Triggers on player inventory click
-		//CC.log.warning("Debug 2 - " + event.getClick().isCreativeAction() + " - " + event.getClick().isRightClick() + " - " + event.getClick().isLeftClick() + " - " + event.getClick() + " - " + event.getSlotType() + " - " + event.getRawSlot() + " - " + event.getClickedInventory().getType().toString());
 		if (event.getClick() == ClickType.CREATIVE) {
 			Player p = (Player) event.getWhoClicked();
 			if (p.hasPermission("CNC.bypass") == false && event.getCursor() != null) {
@@ -132,7 +130,7 @@ public class CreativeEvent implements Listener {
 			return;
 
 		if (entity.getType().equals(EntityType.ITEM_FRAME)) {
-			if (p.hasPermission("CNC.bypass") == false && p.getGameMode() == GameMode.CREATIVE) {
+			if (p.hasPermission("CNC.bypass") == false && p.hasPermission("CNC.bypass.itemframes") == false && p.getGameMode() == GameMode.CREATIVE) {
 				event.setCancelled(true);
 				p.sendMessage(cc.getConfigHandler().getStringWithColor("ChatMessages.OpenSurvivalFrame"));
 			}
@@ -150,7 +148,7 @@ public class CreativeEvent implements Listener {
 			if (item.getType() == Material.AIR)
 				return;
 
-			if (p.hasPermission("CNC.bypass") == false && p.getGameMode() == GameMode.CREATIVE) {
+			if (p.hasPermission("CNC.bypass") == false && p.hasPermission("CNC.bypass.armorstands") == false && p.getGameMode() == GameMode.CREATIVE) {
 				event.setCancelled(true);
 				p.sendMessage(cc.getConfigHandler().getStringWithColor("ChatMessages.OpenSurvivalArmor"));
 			}
